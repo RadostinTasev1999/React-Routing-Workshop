@@ -1,8 +1,9 @@
-import Header from '../components/Header'
-import HomePage from '../components/HomePage'
 import './App.css'
 
-import { Routes, Route, Router } from 'react-router'
+import Header from '../components/header/Header'
+import HomePage from '../components/home/HomePage'
+
+// import { Routes, Route, Router } from 'react-router'
 
 
 function App() {
@@ -12,19 +13,11 @@ function App() {
     <>
     <div id="box">
       <Header />
-
-
-    <Router>
-      <Routes>
-        <Route index element={<HomePage />} />
-        {/* 
-        index element is used to define the default route for a specific path
-        when no other nested routes are matched
-         */}
-      </Routes>
-    </Router>
+      {/* Main content */}
+      <main id="main-content">
+        <HomePage />
+      </main>
     </div>
-    
     </>
   )
 }
