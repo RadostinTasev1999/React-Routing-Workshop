@@ -1,8 +1,40 @@
+import { useNavigate } from "react-router"
+import gameService from "../../src/services/gameService"
+
+
+
 export default function Create(){
+
+    const navigate = useNavigate();
+
+    const submitAction = async(formData) => {
+        //console.log('Form Data is:', formData)
+
+       // const data = Object.fromEntries(formData)
+
+        // console.log('Object fromEntries',data)
+
+       // const {category, imageUrl, maxLevel, summary, title } = Object.fromEntries(formData)
+
+      //  console.log('Desctructured data is:', category,imageUrl,maxLevel,summary,title)
+
+        const gameData = Object.fromEntries(formData)
+
+        const response = await gameService.create(gameData)
+
+        navigate('/games')
+        
+        console.log('Result is:', response)
+        
+
+
+    }
+
+
     return (
         <>
         <section id="create-page" className="auth">
-            <form id="create">
+            <form action={submitAction} id="create">
                 <div className="container">
 
                     <h1>Create Game</h1>
