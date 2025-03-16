@@ -16,7 +16,7 @@ import { useState } from 'react'
 
 function App() {
  
-  const [email, setEmail] = useState();
+  const [email, setEmail] = useState({});
 
   const userLoginHandler = (email) => {
        setEmail(email)
@@ -39,7 +39,7 @@ function App() {
           <Route path='/create' element={<Create />} />
           <Route path='/games/:gameId/edit' element={<Edit />} />
           <Route path='/games' element={<Catalog />} />
-          <Route path='/games/:gameId/details' element={<GameDetails />} />
+          <Route path='/games/:gameId/details' element={<GameDetails email={email} />} />
         </Routes>
       </main>
     </div>

@@ -9,7 +9,9 @@ import gameService from "../../src/services/gameService"
 import Comments from "../show-comments/Comments"
 import CreateComment from "../create-comments/CreateComment"
 
-export default function GameDetails(){
+export default function GameDetails(
+    {email}
+){
 
     const { gameId } = useParams()
     const navigate = useNavigate()
@@ -81,7 +83,7 @@ export default function GameDetails(){
                 </div>
                  </div>
 
-                 <CreateComment />
+                 <CreateComment email={email} gameId={gameId}/>
 
             
             
