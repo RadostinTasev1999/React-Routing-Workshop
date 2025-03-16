@@ -6,6 +6,8 @@ import { Link } from "react-router"
 // import { request } from "../../src/utils/requester"
 import gameService from "../../src/services/gameService"
 
+import Comments from "../show-comments/Comments"
+
 export default function GameDetails(){
 
     const { gameId } = useParams()
@@ -59,7 +61,7 @@ export default function GameDetails(){
 
                 <div className="game-header">
                     <img className="game-img" src={game.imageUrl} />
-                    <h1>Bright</h1>
+                    <h1>{game.title}</h1>
                     <span className="levels">MaxLevel: {game.maxLevel}</span>
                     <p className="type">{game.category}</p>
                 </div>
@@ -69,20 +71,7 @@ export default function GameDetails(){
                 </p>
 
                 
-                <div className="details-comments">
-                    <h2>Comments:</h2>
-                    <ul>
-                        
-                        <li className="comment">
-                            <p>Content: I rate this one quite highly.</p>
-                        </li>
-                        <li className="comment">
-                            <p>Content: The best game.</p>
-                        </li>
-                    </ul>
-                    
-                    <p className="no-comment">No comments.</p>
-                </div>
+                <Comments />
 
                 
                 <div className="buttons">
@@ -93,13 +82,7 @@ export default function GameDetails(){
 
             
             
-            <article className="create-comment">
-                <label>Add new comment:</label>
-                <form className="form">
-                    <textarea name="comment" placeholder="Comment......"></textarea>
-                    <input className="btn submit" type="submit" value="Add Comment"/>
-                </form>
-            </article>
+            
 
         </section>
         </>
