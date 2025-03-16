@@ -8,7 +8,7 @@ export default function HomePage(){
                     <h2>ALL new games are</h2>
                     <h3>Only in GamesPlay</h3>
                 </div>
-                <img src="/client/resources/images/four_slider_img01.png" alt="hero" />
+                <img src="/src/images/four_slider_img01.png" alt="hero" />
 
                 <div id="home-page">
                     <h1>Latest Games</h1>
@@ -16,7 +16,7 @@ export default function HomePage(){
 
                     <div className="game">
                         <div className="image-wrap">
-                            <img src="/images/CoverFire.png" />
+                            <img src="/src/images/CoverFire.png" />
                         </div>
                         <h3>Cover Fire</h3>
                         <div className="rating">
@@ -28,7 +28,7 @@ export default function HomePage(){
                     </div>
                     <div className="game">
                         <div className="image-wrap">
-                            <img src="/images/ZombieLang.png" />
+                            <img src="/src/images/ZombieLang.png" />
                         </div>
                         <h3>Zombie Lang</h3>
                         <div className="rating">
@@ -40,7 +40,7 @@ export default function HomePage(){
                     </div>
                     <div className="game">
                         <div className="image-wrap">
-                            <img src="/images/MineCraft.png" />
+                            <img src="/src/images/MineCraft.png" />
                         </div>
                         <h3>MineCraft</h3>
                         <div className="rating">
