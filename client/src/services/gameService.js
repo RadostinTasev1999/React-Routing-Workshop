@@ -31,6 +31,11 @@ export default {
     async deleteGame(gameId){
 
         return request.delete(`${baseUrl}/${gameId}`)
+    },
+
+    async editGame(gameId,payload){
+
+        return request.put(`${baseUrl}/${gameId}`,payload)
     }
 
 }
