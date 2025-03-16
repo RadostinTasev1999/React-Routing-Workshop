@@ -7,6 +7,7 @@ import { Link } from "react-router"
 import gameService from "../../src/services/gameService"
 
 import Comments from "../show-comments/Comments"
+import CreateComment from "../create-comments/CreateComment"
 
 export default function GameDetails(){
 
@@ -78,7 +79,9 @@ export default function GameDetails(){
                     <Link to={`/games/${gameId}/edit`} className="button">Edit</Link>
                     <button onClick={onDelete} className="button">Delete</button>
                 </div>
-            </div>
+                 </div>
+
+                 <CreateComment />
 
             
             

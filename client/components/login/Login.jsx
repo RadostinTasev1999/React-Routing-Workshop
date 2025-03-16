@@ -1,8 +1,28 @@
+import { Link } from 'react-router'
+
 export default function Login(){
+
+     
+
+    const onLogin = (formData) => {
+
+        const email = formData.get('email')
+        const password = formData.get('password')
+
+        console.log('Email is:', email, 'Password is:', password)
+
+    }
+
 
     return (
         <section id="login-page" className="auth">
-            <form id="login">
+            <form action={onLogin} id="login">
+                {/* action - URL or function
+                    when a function is passed to the action, the function will handle the form submission.
+                    the function passed to action will be called with a single argument containing the form data
+                    of the submitted form.
+
+                */}
 
                 <div className="container">
                     <div className="brand-logo"></div>
@@ -14,7 +34,7 @@ export default function Login(){
                     <input type="password" id="login-password" name="password"/>
                     <input type="submit" className="btn submit" value="Login"/>
                     <p className="field">
-                        <span>If you don't have profile click <a href="#">here</a></span>
+                        <span>If you don't have profile click <Link to={'/register'}>here</Link></span>
                     </p>
                 </div>
             </form>
