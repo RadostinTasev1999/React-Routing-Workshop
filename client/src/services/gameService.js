@@ -20,6 +20,17 @@ export default {
         console.log('Games are:', games)
 
         return games;
+    },
+
+    async getById(gameId){
+
+        return request.get(`${baseUrl}/${gameId}`)
+
+    },
+
+    async deleteGame(gameId){
+
+        return request.delete(`${baseUrl}/${gameId}`)
     }
 
 }

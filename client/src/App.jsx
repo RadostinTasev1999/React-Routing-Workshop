@@ -9,6 +9,7 @@ import Register from '../components/register/register'
 import Create from '../components/create/Create'
 import Edit from '../components/Edit/Edit'
 import Catalog from '../components/catalog/Catalog'
+import GameDetails from '../components/game-details/GameDetails'
 
 // import { Routes, Route, Router } from 'react-router'
 
@@ -29,6 +30,7 @@ function App() {
           <Route path='/create' element={<Create />} />
           <Route path='/edit' element={<Edit />} />
           <Route path='/games' element={<Catalog />} />
+          <Route path='/games/:gameId/details' element={<GameDetails />} />
         </Routes>
       </main>
     </div>

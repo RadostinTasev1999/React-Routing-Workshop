@@ -2,6 +2,7 @@ import { useEffect,useState } from "react"
 import gameService from "../../src/services/gameService";
 import CatalogItem from "../catalog-item/CatalogItem";
 
+
 export default function Catalog(){
 
     const [games,setGames] = useState([]);
