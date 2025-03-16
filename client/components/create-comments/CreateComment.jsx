@@ -3,7 +3,7 @@ import commentService from "../../src/services/commentService"
 import { useNavigate } from "react-router"
 
 export default function CreateComment(
-    {email, gameId}
+    {email, gameId,onCreate}
 ){
     const navigate = useNavigate();
 
@@ -11,13 +11,14 @@ export default function CreateComment(
         
         const comment = formData.get('comment')
 
-        const create = await commentService.create(email,gameId,comment)
+        const createdComment = await commentService.create(email,gameId,comment)
 
-        console.log('Comment Created:', create)
+        console.log('Comment Created:', createdComment)
+
+        onCreate(createdComment);
 
         navigate(`/games/${gameId}/details`)
 
-        
     }
 
     return (

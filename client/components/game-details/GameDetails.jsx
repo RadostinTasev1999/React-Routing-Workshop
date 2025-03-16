@@ -8,6 +8,7 @@ import gameService from "../../src/services/gameService"
 
 import Comments from "../show-comments/Comments"
 import CreateComment from "../create-comments/CreateComment"
+import commentService from "../../src/services/commentService"
 
 export default function GameDetails(
     {email}
@@ -20,6 +21,7 @@ export default function GameDetails(
     //!                manage the dynamic routes in the URL.
 
     const [game,setGame] = useState({})
+    const [comments,setComments] = useState([]);
 
     console.log('Game ID is:', gameId)
 
@@ -27,11 +29,20 @@ export default function GameDetails(
 
     useEffect(() => {
 
-        //! immediately invoke async function expression:
-        (async () => {
-            const game = await gameService.getById(gameId)
-            setGame(game);
-        })();
+        // //! immediately invoke async function expression:
+        // (async () => {
+            
+        // })();
+
+        gameService.getById(gameId)
+            .then((game) => {
+                setGame(game);
+            })
+
+        commentService.getAll(gameId)
+            .then((comment) => {
+                setComments(comment)
+            })
 
        
 
@@ -54,6 +65,10 @@ export default function GameDetails(
 
     console.log("Game is:", game)
 
+    const commentCreateHandler = (createdComment) => {
+         setComments(state => [...state, createdComment])
+    };
+
 
 
     return (
@@ -74,7 +89,7 @@ export default function GameDetails(
                 </p>
 
                 
-                <Comments />
+                <Comments comments={comments}/>
 
                 
                 <div className="buttons">
@@ -83,7 +98,11 @@ export default function GameDetails(
                 </div>
                  </div>
 
-                 <CreateComment email={email} gameId={gameId}/>
+                 <CreateComment 
+                 email={email} 
+                 gameId={gameId}
+                 onCreate={commentCreateHandler}
+                 />
 
             
             
