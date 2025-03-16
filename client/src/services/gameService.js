@@ -35,7 +35,9 @@ export default {
 
     async editGame(gameId,payload){
 
-        return request.put(`${baseUrl}/${gameId}`,payload)
+        return request.put(`${baseUrl}/${gameId}`,{...payload,id:gameId});
+        // we spread the properties of payload object into a new object
+        // we add a new property id with the value of gameId to the same object
     }
 
 }
