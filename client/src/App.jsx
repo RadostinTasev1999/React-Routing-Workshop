@@ -12,10 +12,19 @@ import Catalog from '../components/catalog/Catalog'
 import GameDetails from '../components/game-details/GameDetails'
 
 // import { Routes, Route, Router } from 'react-router'
-
+import { useState } from 'react'
 
 function App() {
-  //const [count, setCount] = useState(0)
+ 
+  const [email, setEmail] = useState();
+
+  const userLoginHandler = (email) => {
+       setEmail(email)
+  }
+
+  /*
+  method which modifies the state of the email property
+  */
 
   return (
     <>
@@ -25,7 +34,7 @@ function App() {
       <main id="main-content">
         <Routes>
           <Route index element={<HomePage />}  />
-          <Route path='/login' element={<Login />} />
+          <Route path='/login' element={<Login userLogin={userLoginHandler} />} />
           <Route path='/register' element={<Register />} />
           <Route path='/create' element={<Create />} />
           <Route path='/games/:gameId/edit' element={<Edit />} />
