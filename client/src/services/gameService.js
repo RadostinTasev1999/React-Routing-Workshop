@@ -13,7 +13,7 @@ export default {
     },
 
    async getAll(){
-        const result = await request.get(baseUrl);
+        const result = await request.get(baseUrl, {signal});
 
         const games = Object.values(result);
 

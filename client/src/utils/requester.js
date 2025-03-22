@@ -1,11 +1,9 @@
-export const request = async(method, url, data) => {
+export const request = async(method, url, data, options = {} ) => {
 
-    let options = {};
+   // let options = requestOption;
 
     if (method !== 'GET') {
-        options = {
-            method
-        };
+        options.method = method
     }
 
     if (data) {

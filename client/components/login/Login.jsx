@@ -1,29 +1,38 @@
 import { useActionState } from 'react';
 import { Link } from 'react-router'
-import { useNavigate } from 'react-router'
+import { useLogin } from '../../api/authApi';
 
 export default function Login(
     {userLogin}
 ){
 
-    const navigate = useNavigate();
+    //const navigate = useNavigate();
 
-    const loginHandler = (previousState, formData) => {
+    const { login } = useLogin();
+
+    const loginHandler = async(_, formData) => {
 
         // previousState - current state of the form. The first time the form is submitted, this will be the initial state you provided
         // previousState = {email: '', password: ''}
 
         const values = Object.fromEntries(formData)
 
-        userLogin(values.email)
 
-        navigate('/games');
+        const authData = await login(values.email, values.password)
+
+        console.log('Result is:', authData)
+
+        // userLogin(values.email)
+
+        // navigate('/games');
+
+        userLogin(authData)
 
         return values
 
     }
 
-    const [values, loginAction, isPending] = useActionState(loginHandler,{email: '', password: ''});
+    const [_, loginAction, isPending] = useActionState(loginHandler,{email: '', password: ''});
     /*
     loginHandler - the function to be called when the form is submitted or button pressed.
                  - when the function is called,it will receive the previous state of the form as its initial argument,
@@ -42,7 +51,7 @@ export default function Login(
     - the isPending flag that tells you whether there is a pending Transition.
     */
     
-    console.log('useActionState current state value is:', values)
+   // console.log('useActionState current state value is:', values)
 
 
     /*
