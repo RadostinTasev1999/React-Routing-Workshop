@@ -6,7 +6,8 @@ export const UserContext = createContext(
         email: '',
         username: '',
         accessToken: '',
-        userLoginHandler: () => null
+        userLoginHandler: () => null,
+        userLogoutHandler: () => null
     }
     /*
         defaultValue - the value that you want the context to have when there is no matching context
