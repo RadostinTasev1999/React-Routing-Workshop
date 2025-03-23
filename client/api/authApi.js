@@ -6,13 +6,25 @@ const baseUrl = 'http://localhost:3030/users'
 
 export const useLogin = () => {
 
-    const abortRef = useRef();
+    const abortRef = useRef(new AbortController());
+
+    console.log('abortRef:', abortRef)
+
     /*
-        useRef() - hook that is used to persist values across renders
-                   without causing a re-render when the value changes
+        abortRef = current: AbortController {signal: AbortSignal}
+    */
+    /*
+        useRef() - React Hook that lets you reference a value that is not needed for rendering.
+                 - returns an object with a single property.
+
+
+
     */
 
-   // const abortController = new AbortController();
+  //  console.log('abortRef.current.signal',abortRef.current.signal)
+
+    //{aborted: false, reason: undefined, onabort: null}
+  
 
     const login = async(email,password) => {
        
@@ -27,11 +39,11 @@ export const useLogin = () => {
     }
 
     useEffect(() => {
-        const abortController = new AbortController(); // create a new AbortController
-        abortRef.current = abortController; // store the abortController reference in the ref.
 
+      const abortController = abortRef.current;
+        
 
-       return () => abortController.abort() // Clean up by aborting the controller when the component unmounts or dependencies change
+       return () => abortController.abort()// Clean up by aborting the controller when the component unmounts or dependencies change
        
     },[])
 
