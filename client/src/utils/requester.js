@@ -19,6 +19,7 @@ export const request = async(method, url, data, options = {} ) => {
 
     try {
         const response = await fetch(url,options);
+        
 
         const responseContentType = response.headers.get('Content-Type')
 
@@ -28,6 +29,8 @@ export const request = async(method, url, data, options = {} ) => {
         }
 
         const result = await response.json();
+
+        console.log('Result from requester function is:',result)
 
         return result;
     } catch (error) {

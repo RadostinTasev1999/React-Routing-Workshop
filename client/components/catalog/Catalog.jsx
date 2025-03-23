@@ -1,5 +1,5 @@
 import { useEffect,useState } from "react"
-import gameService from "../../src/services/gameService";
+import gameApi from "../../src/api/gameApi";
 import CatalogItem from "../catalog-item/CatalogItem";
 
 
@@ -9,14 +9,18 @@ export default function Catalog(){
 
     useEffect(() => {
 
-     gameService.getAll()
+     gameApi.getAll()
         .then((result) => {
+            console.log('Result in getAll then handler is:', result)
             setGames(result)
         })
 
+        .catch((error) => {
+            console.error('Error fetching games:', error)
+        })
          console.log('Games are:', games)
 
-    })
+    }) 
 
 
 

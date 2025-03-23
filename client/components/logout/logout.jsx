@@ -1,4 +1,4 @@
-import { useLogout } from "../../api/authApi"
+import { useLogout } from "../../src/api/authApi"
 import { Navigate } from "react-router"
 
 export default function Logout(){

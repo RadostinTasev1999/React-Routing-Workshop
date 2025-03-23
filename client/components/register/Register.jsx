@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router"
-import { useRegister } from "../../api/authApi"
+import { useRegister } from "../../src/api/authApi"
 import { UserContext } from "../../src/contexts/UserContext"
 import { useContext } from "react"
 
