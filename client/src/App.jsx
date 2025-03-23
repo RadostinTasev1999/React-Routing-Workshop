@@ -3,6 +3,7 @@ import { Routes,Route } from 'react-router'
 import './App.css'
 import { UserContext } from './contexts/UserContext'
 
+import Logout from '../components/logout/logout'
 import Header from '../components/header/Header'
 import HomePage from '../components/home/HomePage'
 import Login from '../components/login/Login'
@@ -23,6 +24,10 @@ function App() {
     setAuthData(resultData)
   }
 
+  const userLogoutHandler = (resultData) => {
+    setAuthData(resultData)
+  }
+
   /*
   method which modifies the state of the email property
   */
@@ -34,7 +39,7 @@ function App() {
 
     */
     <>
-    <UserContext.Provider value={{...authData, userLoginHandler}}>
+    <UserContext.Provider value={{...authData, userLoginHandler, userLogoutHandler}}>
     <div id="box">
       <Header />
       {/* Main content */}
