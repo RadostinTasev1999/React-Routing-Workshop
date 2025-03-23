@@ -1,6 +1,7 @@
-import { useEffect } from "react"
+import { useEffect, useContext } from "react"
 import { useNavigate, useParams } from "react-router"
 import { useState } from "react"
+import { UserContext } from "../../src/contexts/UserContext"
 
 import { Link } from "react-router"
 // import { request } from "../../src/utils/requester"
@@ -9,10 +10,11 @@ import gameService from "../../src/services/gameService"
 import Comments from "../show-comments/Comments"
 import CreateComment from "../create-comments/CreateComment"
 import commentService from "../../src/services/commentService"
+//import { UserContext } from "../../src/contexts/UserContext"
 
-export default function GameDetails(
-    {email}
-){
+export default function GameDetails(){
+
+    const { email } = useContext(UserContext);
 
     const { gameId } = useParams()
     const navigate = useNavigate()

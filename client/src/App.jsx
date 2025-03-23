@@ -1,6 +1,7 @@
 import { Routes,Route } from 'react-router'
 
 import './App.css'
+import { UserContext } from './contexts/UserContext'
 
 import Header from '../components/header/Header'
 import HomePage from '../components/home/HomePage'
@@ -27,22 +28,29 @@ function App() {
   */
 
   return (
+    /* UserContext.Provider -
+                 Wrap your components into a context provider to specify the value
+                 of this context for all components inside.
+
+    */
     <>
+    <UserContext.Provider value={{...authData, userLoginHandler}}>
     <div id="box">
       <Header />
       {/* Main content */}
       <main id="main-content">
         <Routes>
           <Route index element={<HomePage />}  />
-          <Route path='/login' element={<Login userLogin={userLoginHandler} />} />
+          <Route path='/login' element={<Login  />} />
           <Route path='/register' element={<Register />} />
           <Route path='/create' element={<Create />} />
           <Route path='/games/:gameId/edit' element={<Edit />} />
           <Route path='/games' element={<Catalog />} />
-          <Route path='/games/:gameId/details' element={<GameDetails email={authData.email} />} />
+          <Route path='/games/:gameId/details' element={<GameDetails  />} />
         </Routes>
       </main>
     </div>
+    </UserContext.Provider>
     </>
   )
 }
