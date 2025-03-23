@@ -51,3 +51,17 @@ export const useLogin = () => {
         login
     }
 }
+
+export const useRegister = () => {
+   
+    const register = async (email,password) => {
+       
+        const response = await request.post(`${baseUrl}/register`,{email,password})
+       
+        return response;
+    }
+        
+    return {
+        register
+    };
+}
