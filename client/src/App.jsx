@@ -16,10 +16,10 @@ import { useState } from 'react'
 
 function App() {
  
-  const [email, setEmail] = useState({});
+  const [authData, setAuthData] = useState({});
 
-  const userLoginHandler = (authData) => {
-       setEmail(authData)
+  const userLoginHandler = (resultData) => {
+    setAuthData(resultData)
   }
 
   /*
@@ -39,7 +39,7 @@ function App() {
           <Route path='/create' element={<Create />} />
           <Route path='/games/:gameId/edit' element={<Edit />} />
           <Route path='/games' element={<Catalog />} />
-          <Route path='/games/:gameId/details' element={<GameDetails email={email} />} />
+          <Route path='/games/:gameId/details' element={<GameDetails email={authData.email} />} />
         </Routes>
       </main>
     </div>
