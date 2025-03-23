@@ -17,12 +17,23 @@ export const request = async(method, url, data, options = {} ) => {
         }
     }
 
-    const response = await fetch(url,options);
+    try {
+        const response = await fetch(url,options);
 
-    const result = await response.json();
+        const responseContentType = response.headers.get('Content-Type')
 
+        if (!responseContentType ) {
+                return ;
+            //console.log(response.headers.get('Content-Type'))
+        }
+
+        const result = await response.json();
+
+        return result;
+    } catch (error) {
+        throw new Error(error)
+    }
     // console.log('Result is:', result)
-    return result;
 }
 
 export default {
