@@ -47,6 +47,7 @@ function App() {
           <Route path='/games/:gameId/edit' element={<Edit />} />
           <Route path='/games' element={<Catalog />} />
           <Route path='/games/:gameId/details' element={<GameDetails  />} />
+          <Route path='/logout' element={<Logout />} />
         </Routes>
       </main>
     </div>
