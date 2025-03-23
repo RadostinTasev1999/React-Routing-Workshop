@@ -1,7 +1,13 @@
+import { useLogout } from "../../api/authApi"
+import { Navigate } from "react-router"
+
 export default function Logout(){
-    return (
-        <>
-        
-        </>
-    )
+
+   const { isLoggedOut } = useLogout()
+
+    return isLoggedOut
+                 ?
+           <Navigate to="/" />
+                  :
+                 null
 }
