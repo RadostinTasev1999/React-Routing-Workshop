@@ -19,7 +19,7 @@ export const request = async(method, url, data, options = {} ) => {
 
     try {
         const response = await fetch(url,options);
-        
+        //console.log('Games from requester.js are:', await response.json())
 
         const responseContentType = response.headers.get('Content-Type')
 
@@ -28,11 +28,11 @@ export const request = async(method, url, data, options = {} ) => {
             //console.log(response.headers.get('Content-Type'))
         }
 
-        const result = await response.json();
+        //const result = await response.json();
 
-        console.log('Result from requester function is:',result)
+        const result = await response.json()
 
-        return result;
+        return result
     } catch (error) {
         throw new Error(error)
     }

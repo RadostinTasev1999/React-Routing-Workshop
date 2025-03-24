@@ -12,7 +12,7 @@ export default {
     // GetAll
 
      async getAll(){
-            const result = await request.get(baseUrl,null);
+            const result = await request.get(baseUrl);
     
             const games = Object.values(result);
     
@@ -62,7 +62,7 @@ export const useCreateGame = () => {
 
         console.log('gameData from create is:', gameData)
         const fetchData = await request.post(baseUrl,gameData, options)
-      
+      //console.log('Fetched data is:', fetchData)
         return fetchData
     } 
 

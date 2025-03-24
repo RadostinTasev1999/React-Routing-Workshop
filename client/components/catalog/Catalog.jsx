@@ -1,7 +1,9 @@
 import { useEffect,useState } from "react"
 import gameApi from "../../src/api/gameApi";
+//import { request } from "../../src/utils/requester";
 import CatalogItem from "../catalog-item/CatalogItem";
 
+// const baseUrl = 'http://localhost:3030/data/games'
 
 export default function Catalog(){
 
@@ -9,18 +11,11 @@ export default function Catalog(){
 
     useEffect(() => {
 
-     gameApi.getAll()
-        .then((result) => {
-            console.log('Result in getAll then handler is:', result)
-            setGames(result)
-        })
-
-        .catch((error) => {
-            console.error('Error fetching games:', error)
-        })
-         console.log('Games are:', games)
-
-    }) 
+        const response = gameApi.getAll() 
+              response.then((games) => {
+                setGames(games)
+              })
+    },[])
 
 
 
