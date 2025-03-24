@@ -65,7 +65,7 @@ export default function GameDetails(){
 
     };
 
-    console.log("Game is:", game)
+  
 
     const commentCreateHandler = (createdComment) => {
          setComments(state => [...state, createdComment])

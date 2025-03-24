@@ -24,8 +24,10 @@ export default {
         // GetById
 
          async getById(gameId){
-        
-                return request.get(`${baseUrl}/${gameId}`)
+            
+                const game = await request.get(`${baseUrl}/${gameId}`)
+                console.log("Game is:", game)
+                return game
         
             },
 

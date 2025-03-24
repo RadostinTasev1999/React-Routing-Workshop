@@ -1,5 +1,5 @@
 import request from '../utils/requester.js'
- const baseUrl = 'http://localhost:3030/jsonstore/games'
+ const baseUrl = 'http://localhost:3030/data/games'
 
 export default {
 
@@ -24,8 +24,11 @@ export default {
 
     async getById(gameId){
 
-        return request.get(`${baseUrl}/${gameId}`)
+        const result = await request.get(`${baseUrl}/${gameId}`)
 
+        console.log('Game by ID in gameService is:', result)
+
+        return result
     },
 
     async deleteGame(gameId){
