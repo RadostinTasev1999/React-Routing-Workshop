@@ -1,5 +1,5 @@
 import request from '../utils/requester.js'
-import { useContext } from 'react'
+import useAuth from '../hooks/useAuth.js'
 import { UserContext } from '../contexts/UserContext.js'
 
 const baseUrl = 'http://localhost:3030/data/games'
@@ -52,25 +52,27 @@ export default {
 
 export const useCreateGame = () => {
 
-    const { accessToken } = useContext(UserContext)
+    const { request } = useAuth()
 
-    const options = {
-        headers: {
-            "X-Authorization" : accessToken
-        }
-    }
+    const create = (gameData) => 
 
-    const create = async(gameData) => {
-
-        console.log('gameData from create is:', gameData)
-        const fetchData = await request.post(baseUrl,gameData, options)
+          request.post(baseUrl,gameData)
       //console.log('Fetched data is:', fetchData)
-        return fetchData
-    } 
 
-    return {
-        create
-    }
+      return {
+                 create
+             }
     
-        //const response = await request('POST',baseUrl,data)   
+  
+}
+
+export const useEditGame = () => {
+    const { request } = useAuth();
+
+    const edit = (gameId,gameData) => {
+
+        return request.put(`${baseUrl}/${gameId}`, {...gameData,_id: gameId})
+    
+    }
+        
 }
