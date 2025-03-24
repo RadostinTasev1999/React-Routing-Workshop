@@ -9,6 +9,10 @@ export const request = async(method, url, data, options = {} ) => {
     if (data) {
         options = {
             ...options,
+            /*
+            here we spread the properties of the existing options
+            object into the new object
+            */
             headers: {  
                 'Content-Type': 'application/json',
                 ...options.headers
@@ -47,6 +51,7 @@ export default {
     post: request.bind(null, 'POST'),
     put: request.bind(null, 'PUT'),
     delete: request.bind(null, 'DELETE'),
+    baseRequest: request
 }
 /*
 bind is a JavaScript function used to create a new function that, when called has its this value
