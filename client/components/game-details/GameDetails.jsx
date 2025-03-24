@@ -6,6 +6,7 @@ import { UserContext } from "../../src/contexts/UserContext"
 import { Link } from "react-router"
 // import { request } from "../../src/utils/requester"
 import gameService from "../../src/services/gameService"
+import { useGame } from "../../src/services/gameService"
 
 import Comments from "../show-comments/Comments"
 import CreateComment from "../create-comments/CreateComment"
@@ -22,11 +23,10 @@ export default function GameDetails(){
     //! by useParams() we acess the parameters of the current route to 
     //!                manage the dynamic routes in the URL.
 
-    const [game,setGame] = useState({})
+
     const [comments,setComments] = useState([]);
 
-    console.log('Game ID is:', gameId)
-
+    const { game } = useGame(gameId)
    
 
     useEffect(() => {
@@ -35,11 +35,6 @@ export default function GameDetails(){
         // (async () => {
             
         // })();
-
-        gameService.getById(gameId)
-            .then((game) => {
-                setGame(game);
-            })
 
         commentService.getAll(gameId)
             .then((comment) => {

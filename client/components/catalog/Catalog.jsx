@@ -1,23 +1,14 @@
-import { useEffect,useState } from "react"
-import gameApi from "../../src/api/gameApi";
+// import { useEffect,useState } from "react"
+//import gameApi from "../../src/api/gameApi";
 //import { request } from "../../src/utils/requester";
 import CatalogItem from "../catalog-item/CatalogItem";
+import { useGames } from "../../src/services/gameService";
 
 // const baseUrl = 'http://localhost:3030/data/games'
 
 export default function Catalog(){
 
-    const [games,setGames] = useState([]);
-
-    useEffect(() => {
-
-        const response = gameApi.getAll() 
-              response.then((games) => {
-                setGames(games)
-              })
-    },[])
-
-
+   const { games } = useGames()
 
     return (
        

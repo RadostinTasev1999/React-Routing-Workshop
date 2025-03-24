@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+import { useState } from 'react';
 import request from '../utils/requester.js'
  const baseUrl = 'http://localhost:3030/data/games'
 
@@ -41,6 +43,35 @@ export default {
         return request.put(`${baseUrl}/${gameId}`,{...payload,id:gameId});
         // we spread the properties of payload object into a new object
         // we add a new property id with the value of gameId to the same object
+    },
+}
+
+export const useGames = () => {
+    const [games,setGames] = useState([]);
+
+    useEffect(() => {
+        request.get(`${baseUrl}`)
+            .then((games) => setGames(games))
+    },[]);
+
+    return {
+        games
+    }
+
+}
+
+export const useGame = (gameId) => {
+
+
+    const [game, setGame] = useState({})
+
+    useEffect(() => {
+        request.get(`${baseUrl}/${gameId}`)
+            .then((game) => setGame(game))
+    },[gameId])
+
+    return {
+        game
     }
 
 }
