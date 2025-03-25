@@ -1,52 +1,22 @@
 import request from '../utils/requester.js'
 import useAuth from '../hooks/useAuth.js'
 import { UserContext } from '../contexts/UserContext.js'
+import { useEffect,useState } from 'react'
 
 const baseUrl = 'http://localhost:3030/data/games'
 
-export default {
- 
-    // Create
-   
+export const useGame = (gameId) => {
 
-    // GetAll
+    const [game,setGame] = useState({});
 
-     async getAll(){
-            const result = await request.get(baseUrl);
-    
-            const games = Object.values(result);
-    
-            console.log('Games are:', games)
-    
-            return games;
-        },
+    useEffect(() => {
+        request.get(`${baseUrl}/${gameId}`) 
+            .then((game) => setGame(game))
+    },[gameId])
 
-        // GetById
-
-         async getById(gameId){
-            
-                const game = await request.get(`${baseUrl}/${gameId}`)
-                console.log("Game is:", game)
-                return game
-        
-            },
-
-        // Delete game
-
-        async deleteGame(gameId){
-        
-                return request.delete(`${baseUrl}/${gameId}`)
-         },
-
-       // Edit game
-       
-       async editGame(gameId,payload){
-       
-               return request.put(`${baseUrl}/${gameId}`,{...payload,id:gameId});
-               // we spread the properties of payload object into a new object
-               // we add a new property id with the value of gameId to the same object
-           }
-
+    return {
+        game
+    }
 
 }
 
@@ -62,17 +32,33 @@ export const useCreateGame = () => {
       return {
                  create
              }
-    
+     
   
 }
 
 export const useEditGame = () => {
     const { request } = useAuth();
 
-    const edit = (gameId,gameData) => {
+    const edit = async(gameId,gameData) => 
 
-        return request.put(`${baseUrl}/${gameId}`, {...gameData,_id: gameId})
+        await request.put(`${baseUrl}/${gameId}`, {...gameData,_id: gameId})
     
-    }
+        return {
+            edit
+        }
+    
         
+}
+
+export const useDeleteGame = () => {
+    const { request } = useAuth();
+
+    const deleteGame = (gameId) => 
+
+        request.delete(`${baseUrl}/${gameId}`);
+
+    return {
+        deleteGame
+    }
+
 }
