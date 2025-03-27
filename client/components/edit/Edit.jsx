@@ -16,13 +16,15 @@ export default function Edit(){
 
     const onSubmit = async(formData) => {
 
-        const defaultValues = Object.fromEntries(formData)
+       const defaultValues = Object.fromEntries(formData)
 
-        console.log('Edit form defaultValues are:', defaultValues)
+       console.log('Edit form defaultValues are:', defaultValues)
 
-        await edit(gameId,defaultValues)
+       const editedGame =  await edit(gameId,defaultValues)
+       
+       console.log("Edited game is:", editedGame)
 
-        navigate(`/games/${gameId}/details`)
+       navigate(`/games/${gameId}/details`)
 
     }
 
