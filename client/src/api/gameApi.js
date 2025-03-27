@@ -19,6 +19,25 @@ export const useGame = (gameId) => {
     }
 
 }
+export const useGames = () => {
+
+    //const { request } = useAuth()
+    const [games,setGames] = useState([]);
+
+    useEffect(() => {
+        request.get(baseUrl)
+            .then((response) => {
+                console.log('Games are:', response)
+                setGames(response)
+            })
+    },[])
+        
+    
+    return {
+             games
+           }
+}
+   
 
 export const useCreateGame = () => {
 
@@ -39,9 +58,9 @@ export const useCreateGame = () => {
 export const useEditGame = () => {
     const { request } = useAuth();
 
-    const edit = async(gameId,gameData) => 
+    const edit = (gameId,gameData) => 
 
-        await request.put(`${baseUrl}/${gameId}`, {...gameData,_id: gameId})
+         request.put(`${baseUrl}/${gameId}`, {...gameData,_id: gameId})
     
         return {
             edit
@@ -53,9 +72,13 @@ export const useEditGame = () => {
 export const useDeleteGame = () => {
     const { request } = useAuth();
 
-    const deleteGame = (gameId) => 
+    const deleteGame = async(gameId) => 
 
-        request.delete(`${baseUrl}/${gameId}`);
+       await request.delete(`${baseUrl}/${gameId}`);
+        /*
+        When we invoke request.delete(), we make a call to the
+        requestWrapper function with the HTTP method set to "DELETE"
+        */
 
     return {
         deleteGame
