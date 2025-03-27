@@ -33,3 +33,10 @@ export default function useAuth() {
     }
 
 }
+/*
+useAuth hook provides the request object that contains methods for HTTP requests
+each of these methods is created by calling requestWrapper with the corresponding 
+HTTP method.
+requestWrapper function is a utility function that wraps around request.baseRequest(),
+which is presumably a function that makes the actual HTTP request
+*/

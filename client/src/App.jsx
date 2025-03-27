@@ -9,7 +9,7 @@ import HomePage from '../components/home/HomePage'
 import Login from '../components/login/Login'
 import Register from '../components/register/Register'
 import Create from '../components/create/Create'
-import Edit from '../components/Edit/Edit'
+import Edit from '../components/edit/Edit'
 import Catalog from '../components/catalog/Catalog'
 import GameDetails from '../components/game-details/GameDetails'
 
