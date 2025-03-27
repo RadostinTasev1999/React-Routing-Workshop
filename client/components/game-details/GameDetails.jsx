@@ -5,12 +5,12 @@ import { UserContext } from "../../src/contexts/UserContext"
 
 import { Link } from "react-router"
 // import { request } from "../../src/utils/requester"
-import gameService from "../../src/services/gameService"
-import { useGame } from "../../src/services/gameService"
+import { useGame } from "../../src/api/gameApi"
 
 import Comments from "../show-comments/Comments"
 import CreateComment from "../create-comments/CreateComment"
 import commentService from "../../src/services/commentService"
+import { useDeleteGame } from "../../src/api/gameApi"
 //import { UserContext } from "../../src/contexts/UserContext"
 
 export default function GameDetails(){
@@ -27,7 +27,9 @@ export default function GameDetails(){
     const [comments,setComments] = useState([]);
 
     const { game } = useGame(gameId)
-   
+    const { deleteGame } = useDeleteGame()
+    
+   console.log('Edited game is:', game)
 
     useEffect(() => {
 
@@ -53,7 +55,7 @@ export default function GameDetails(){
                     return;
             }
 
-            await gameService.deleteGame(gameId)
+           await deleteGame(gameId)
 
             navigate('/')
 
