@@ -2,14 +2,15 @@
 //import gameApi from "../../src/api/gameApi";
 //import { request } from "../../src/utils/requester";
 import CatalogItem from "../catalog-item/CatalogItem";
-import { useGames } from "../../src/services/gameService";
+//import { useGames } from "../../src/services/gameService";
+import { useGames } from "../../src/api/gameApi";
 
 // const baseUrl = 'http://localhost:3030/data/games'
 
 export default function Catalog(){
 
    const { games } = useGames()
-
+    console.log('Games are:',games)
     return (
        
         <section id="catalog-page">
