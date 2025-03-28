@@ -6,25 +6,15 @@ import { useCreateGame } from "../../src/api/gameApi";
 export default function Create(){
 
     const navigate = useNavigate();
-    const {create} = useCreateGame(); // we destructure the create method from userCreateGame()
+    const {create: createGame} = useCreateGame(); // we destructure the create method from userCreateGame()
 
     const submitAction = async(formData) => {
-        //console.log('Form Data is:', formData)
-
-       // const data = Object.fromEntries(formData)
-
-        // console.log('Object fromEntries',data)
-
-       // const {category, imageUrl, maxLevel, summary, title } = Object.fromEntries(formData)
-
-      //  console.log('Desctructured data is:', category,imageUrl,maxLevel,summary,title)
+        
 
         const gameData = Object.fromEntries(formData)
 
-        console.log('Game data is:', gameData)
-
         try {
-          await create(gameData)
+          await createGame(gameData)
             
           navigate('/games')
 

@@ -24,8 +24,13 @@ export const useGames = () => {
     //const { request } = useAuth()
     const [games,setGames] = useState([]);
 
+    // new URLSearchParams()
     useEffect(() => {
-        request.get(baseUrl)
+        // const searchParams = new URLSearchParams({
+        //     sortBy: '_createdOn desc',
+        //     pageSize: 2
+        // })
+        request.get(`${baseUrl}`)
             .then((response) => {
                 console.log('Games are:', response)
                 setGames(response)
@@ -56,6 +61,7 @@ export const useCreateGame = () => {
 }
 
 export const useEditGame = () => {
+    
     const { request } = useAuth();
 
     const edit = (gameId,gameData) => 
