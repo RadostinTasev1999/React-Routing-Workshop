@@ -14,12 +14,15 @@ import Catalog from '../components/catalog/Catalog'
 import GameDetails from '../components/game-details/GameDetails'
 
 // import { Routes, Route, Router } from 'react-router'
-import { useState } from 'react'
+//import { useState } from 'react'
+import usePersistedState from './hooks/usePersistedState'
 
 function App() {
  
-  const [authData, setAuthData] = useState({});
-
+  const [authData, setAuthData] = usePersistedState('auth', {});
+  // we predefine authData state property and setAuthData state handler, which will
+  // get thier values form usePersistedState custom hook
+  
   const userLoginHandler = (resultData) => {
     setAuthData(resultData)
   }
