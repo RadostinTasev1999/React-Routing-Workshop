@@ -6,6 +6,20 @@ export const request = async(method, url, data, options = {} ) => {
         options.method = method
     }
 
+    const localStorageData = localStorage.getItem('auth')
+    
+    const authData = JSON.parse(localStorageData)
+
+    if (authData.accessToken) {
+        options = {
+            ...options,
+            headers: {
+                'X-Authorization': authData.accessToken,
+                ...options.headers
+            }
+        }
+    }
+
     if (data) {
         options = {
             ...options,
