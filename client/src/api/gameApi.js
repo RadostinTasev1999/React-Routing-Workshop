@@ -8,11 +8,14 @@ const baseUrl = 'http://localhost:3030/data/games'
 export const useGame = (gameId) => {
 
     const [game,setGame] = useState({});
+    const { request } = useAuth();
 
     useEffect(() => {
-        request.get(`${baseUrl}/${gameId}`) 
-            .then((game) => setGame(game))
-    },[gameId])
+        request.get(`${baseUrl}/${gameId}`)
+            .then((response) => {
+                setGame(response)
+            })
+    },[gameId,request])
 
     return {
         game

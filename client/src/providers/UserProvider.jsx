@@ -43,7 +43,7 @@ email: 'peter@abv.bg',
     UserContext.Provider - part of the React Context API that
     allows you to share data and functionality such as state or functions
     across multiple components in your app, without having to 
-    pass props down manually trough every level of the component
+    pass props down manually through every level of the component
     tree.
     
 */

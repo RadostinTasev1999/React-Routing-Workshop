@@ -2,7 +2,7 @@ import useAuth from "../../src/hooks/useAuth";
 import { Outlet } from "react-router";
 
 export default function AuthGuard(
-    {children}
+  
 ){
 
     const { isAuthenticated } = useAuth();

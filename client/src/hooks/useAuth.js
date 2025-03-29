@@ -1,6 +1,6 @@
 import { useContext, useCallback, useMemo } from "react";
 import { UserContext } from "../contexts/UserContext";
-import { request } from "../utils/requester";
+import request from '../utils/requester'
 
 
 export default function useAuth() {
@@ -33,9 +33,9 @@ export default function useAuth() {
     return {
         
         ...authData,
+        userId: authData._id,
         isAuthenticated: !!authData.accessToken,
         accessToken,
-        userId:authData._id,
         request: requestObject
     }
 
