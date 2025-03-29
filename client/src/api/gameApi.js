@@ -1,6 +1,6 @@
 import request from '../utils/requester.js'
 import useAuth from '../hooks/useAuth.js'
-import { UserContext } from '../contexts/UserContext.js'
+//import { UserContext } from '../contexts/UserContext.js'
 import { useEffect,useState } from 'react'
 
 const baseUrl = 'http://localhost:3030/data/games'
