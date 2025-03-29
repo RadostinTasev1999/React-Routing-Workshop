@@ -1,7 +1,7 @@
 import { Routes,Route } from 'react-router'
 
 import './App.css'
-import { UserContext } from './contexts/UserContext'
+import UserProvider from './providers/UserProvider'
 
 import Logout from '../components/logout/logout'
 import Header from '../components/header/Header'
@@ -12,25 +12,13 @@ import Create from '../components/create/Create'
 import Edit from '../components/edit/Edit'
 import Catalog from '../components/catalog/Catalog'
 import GameDetails from '../components/game-details/GameDetails'
+import AuthGuard from '../components/guards/AuthGuard'
 
 // import { Routes, Route, Router } from 'react-router'
 //import { useState } from 'react'
-import usePersistedState from './hooks/usePersistedState'
+//import usePersistedState from './hooks/usePersistedState'
 
 function App() {
- 
-  const [authData, setAuthData] = usePersistedState('auth', {});
-  // we predefine authData state property and setAuthData state handler, which will
-  // get thier values form usePersistedState custom hook
-  
-  const userLoginHandler = (resultData) => {
-    setAuthData(resultData)
-  }
-
-  const userLogoutHandler = (resultData) => {
-    setAuthData(resultData)
-  }
-
   /*
   method which modifies the state of the email property
   */
@@ -42,7 +30,8 @@ function App() {
 
     */
     <>
-    <UserContext.Provider value={{...authData, userLoginHandler, userLogoutHandler}}>
+     {/* We use UserProvider which uses the React Context API */}
+    <UserProvider>
     <div id="box">
       <Header />
       {/* Main content */}
@@ -51,15 +40,20 @@ function App() {
           <Route index element={<HomePage />}  />
           <Route path='/login' element={<Login  />} />
           <Route path='/register' element={<Register />} />
-          <Route path='/create' element={<Create />} />
-          <Route path='/games/:gameId/edit' element={<Edit />} />
+          <Route  element={<AuthGuard />}>
+            <Route path='/create' element={<Create />} />
+            <Route path='/games/:gameId/edit' element={<Edit />} />
+            <Route path='/logout' element={<Logout />} />
+          </ Route>
+          
           <Route path='/games' element={<Catalog />} />
           <Route path='/games/:gameId/details' element={<GameDetails  />} />
-          <Route path='/logout' element={<Logout />} />
+          
         </Routes>
       </main>
     </div>
-    </UserContext.Provider>
+    </ UserProvider>
+
     </>
   )
 }
