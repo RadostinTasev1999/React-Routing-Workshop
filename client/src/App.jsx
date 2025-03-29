@@ -4,6 +4,7 @@ import './App.css'
 import UserProvider from './providers/UserProvider'
 
 import Logout from '../components/logout/logout'
+import GuestGuard from '../components/guards/GuestGuard'
 import Header from '../components/header/Header'
 import HomePage from '../components/home/HomePage'
 import Login from '../components/login/Login'
@@ -38,13 +39,16 @@ function App() {
       <main id="main-content">
         <Routes>
           <Route index element={<HomePage />}  />
-          <Route path='/login' element={<Login  />} />
-          <Route path='/register' element={<Register />} />
+          
           <Route  element={<AuthGuard />}>
             <Route path='/create' element={<Create />} />
             <Route path='/games/:gameId/edit' element={<Edit />} />
             <Route path='/logout' element={<Logout />} />
           </ Route>
+          <Route element={<GuestGuard />}>
+            <Route path='/login' element={<Login  />} />
+            <Route path='/register' element={<Register />} />
+          </Route>
           
           <Route path='/games' element={<Catalog />} />
           <Route path='/games/:gameId/details' element={<GameDetails  />} />
