@@ -2,6 +2,7 @@
 import { useNavigate, useParams } from "react-router"
 //import { useState } from "react"
 //import { UserContext } from "../../src/contexts/UserContext"
+import { useCreateComment } from "../../src/api/commentApi";
 
 import { Link } from "react-router"
 // import { request } from "../../src/utils/requester"
@@ -13,27 +14,24 @@ import CreateComment from "../create-comments/CreateComment"
 import { useDeleteGame } from "../../src/api/gameApi"
 import useAuth from "../../src/hooks/useAuth"
 import { useComments } from "../../src/api/commentApi"
+import { useState } from "react";
+import { useOptimistic } from "react";
+import {v4 as uuid} from 'uuid';
 //import { UserContext } from "../../src/contexts/UserContext"
 
 export default function GameDetails(){
 
-    
-
     const { email, _id: userId } = useAuth()
-
     const { gameId } = useParams()
     const navigate = useNavigate()
-
-    //! by useParams() we acess the parameters of the current route to 
-    //!                manage the dynamic routes in the URL.
     const { game } = useGame(gameId)
     const { deleteGame } = useDeleteGame()
     const { comments } = useComments(gameId)
+    const { create } = useCreateComment();
+    const [optimisticComments, setOptimisticComments] = useOptimistic(comments)
+
+   //const [gameComments,setComments] = useState({})
     
-   console.log('Edited game is:', game)
-
- 
-
     const onDelete = async() => {
         const hasConfirmed = confirm(`Are you sure you want to delete ${game.title} game?`)
         //! the confirm method takes in a message parameter that will be
@@ -49,14 +47,30 @@ export default function GameDetails(){
 
     };
 
-  
-
-    const commentCreateHandler = (createdComment) => {
-         setComments(state => [...state, createdComment])
-    };
-
-
     const isOwner = userId === game._ownerId
+
+    const commentCreateHandler = async(comment) => {
+        // optimistic update
+        const newOptimisticComment = {
+            _id:uuid(),
+            gameId,
+            comment,
+            pending: true
+        }
+      
+        
+
+          // server update
+        const createdComment = await create(gameId,comment)
+
+        setOptimisticComments(state => [...state,createdComment])
+
+        // Local state update
+        setComments(state => [...state, createdComment])
+
+
+      console.log('Created comment is:', createdComment)
+    }
 
     return (
         <>
@@ -76,7 +90,7 @@ export default function GameDetails(){
                 </p>
 
                 
-                <Comments comments={comments}/>
+                <Comments comments={optimisticComments}/>
 
                 
                 { isOwner && (
@@ -93,11 +107,6 @@ export default function GameDetails(){
                  gameId={gameId}
                  onCreate={commentCreateHandler}
                  />
-
-            
-            
-            
-
         </section>
         </>
     )
