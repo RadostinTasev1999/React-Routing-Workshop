@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router"
 import { useRegister } from "../../src/api/authApi"
-import { UserContext } from "../../src/contexts/UserContext"
-import { useContext } from "react"
+import { UserContext, useUserContext } from "../../src/contexts/UserContext"
+
 
 
 
@@ -9,7 +9,7 @@ export default function Register() {
 
     const navigate = useNavigate()
     const { register } = useRegister()
-    const { userLoginHandler } = useContext(UserContext)
+    const { userLoginHandler } = useUserContext();
 
     const registerHandler = async(formData) => {
        
