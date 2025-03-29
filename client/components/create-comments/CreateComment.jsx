@@ -1,23 +1,16 @@
-import commentService from "../../src/services/commentService"
-
-import { useNavigate } from "react-router"
+//import { useNavigate } from "react-router"
 
 export default function CreateComment(
-    {email, gameId,onCreate}
+    {onCreate}
 ){
-    const navigate = useNavigate();
+    //const navigate = useNavigate();
 
     const commentAction = async(formData) => {
         
         const comment = formData.get('comment')
 
-        const createdComment = await commentService.create(email,gameId,comment)
 
-        console.log('Comment Created:', createdComment)
-
-        onCreate(createdComment);
-
-        navigate(`/games/${gameId}/details`)
+        onCreate(comment);
 
     }
 
