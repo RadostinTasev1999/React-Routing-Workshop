@@ -1,5 +1,5 @@
 import { useActionState,useContext } from 'react';
-import { Link } from 'react-router'
+import { Link, useNavigate } from 'react-router'
 import { useLogin } from '../../src/api/authApi';
 import { UserContext } from '../../src/contexts/UserContext';
 
@@ -7,6 +7,7 @@ export default function Login(){
 
     //const navigate = useNavigate();
 
+    const navigate = useNavigate();
     const { login } = useLogin();
     const {userLoginHandler} = useContext(UserContext)
 
@@ -27,6 +28,8 @@ export default function Login(){
         // navigate('/games');
 
         userLoginHandler(authData)
+
+        navigate(-1)
 
         return values
 
