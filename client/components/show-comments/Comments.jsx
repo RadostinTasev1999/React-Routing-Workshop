@@ -1,3 +1,5 @@
+import styles from './CommentsShow.module.css'
+
 export default function Comments(
     {comments}
 ) {
@@ -9,12 +11,13 @@ export default function Comments(
                 <h2>Comments:</h2>
                 <ul>
                     { 
-                            comments.length > 0
-                                ?
+                            comments && comments.length > 0
+                                
+                            ?
 
-                        comments.map((el) => (
-                    <li className="comment">
-                        <p>{el.email + " " + el.comment}</p>
+                        comments.map(({_id,_ownerId,comment,pending}) => (
+                    <li key={_id} className={`comment ${pending ? styles['comment-pending'] : ''}`.trim()}>
+                        <p>{_ownerId}:{comment}</p>
                     </li>
                         ))
                                 :
