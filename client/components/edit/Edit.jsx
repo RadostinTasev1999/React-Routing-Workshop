@@ -1,11 +1,13 @@
 // import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 // import gameService from "../../src/services/gameService";
-import { useNavigate } from "react-router";
+import { useNavigate, Navigate } from "react-router";
 import { useEditGame,useGame } from "../../src/api/gameApi";
+import useAuth from "../../src/hooks/useAuth";
 
 export default function Edit(){
 
+    const { userId } = useAuth();
     const {gameId} = useParams()
     // const [game,setGame] = useState({})
     const navigate = useNavigate()
@@ -29,6 +31,14 @@ export default function Edit(){
     }
 
     console.log('Game is', game)
+
+    const isOwner = userId === game._ownerId;
+    // if the userId from the logged in user matches the current game Id,
+    // isOwner will be true
+
+    if (!isOwner) {
+        return <Navigate to="/games" />
+    }
        
 
     return (
