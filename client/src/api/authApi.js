@@ -38,6 +38,14 @@ export const useLogin = () => {
 
         */
 
+            //localStorage.setItem('email')
+            /*
+            localStorage changes do not notify React components about the change
+            React does not subscribe to local storage
+            */
+
+            
+
         return result;
     }
 
