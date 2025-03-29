@@ -3,16 +3,6 @@ import useAuth from "../hooks/useAuth";
 
 const baseUrl = 'http://localhost:3030/jsonstore/comments'
 
-export default {
-    async getAll(gameId) {
-       
-    },
-
-    create() {
-
-    }
-}
-
 export const useComments = (gameId) => {
     const { request } = useAuth();
     const [comments,setComments] = useState([])
@@ -35,4 +25,24 @@ export const useComments = (gameId) => {
         comments
     }
 
+}
+
+export const useCreateComment = () => { 
+
+    const { request } = useAuth()
+
+    const create = (gameId, comment) => {
+
+        const commentData = {
+            gameId,
+            comment
+        };
+
+    
+        return request.post(baseUrl, commentData)
+    }
+
+    return {
+        create
+    }
 }
