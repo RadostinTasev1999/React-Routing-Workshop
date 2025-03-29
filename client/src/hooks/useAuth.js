@@ -6,7 +6,8 @@ import { request } from "../utils/requester";
 export default function useAuth() {
 
     const {accessToken, ...authData} = useContext(UserContext)
-
+// useContext - react hook that lets you read and subscribe to
+//              a context from your component
     
 
     const requestWrapper = useCallback((method, url, data, options = {}) => {
@@ -32,9 +33,9 @@ export default function useAuth() {
     return {
         
         ...authData,
+        isAuthenticated: !!authData.accessToken,
         accessToken,
         userId:authData._id,
-        isAuthenticated: !!accessToken,
         request: requestObject
     }
 
