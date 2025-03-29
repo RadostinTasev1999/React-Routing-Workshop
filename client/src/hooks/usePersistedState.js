@@ -2,7 +2,7 @@ import { useState } from "react"
 
 export default function usePersistedState(key, initialState){
     const [state,setState] = useState(() => {
-        const persistedState = localStorage.getItem('auth')
+        const persistedState = localStorage.getItem(key)
         if (!persistedState) {
             return initialState
         }
